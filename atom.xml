@@ -6,7 +6,7 @@
   <link href="https://ukmeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://ukmeng.github.io/"/>
-  <updated>2021-01-26T11:30:25.613Z</updated>
+  <updated>2021-01-26T13:37:22.876Z</updated>
   <id>https://ukmeng.github.io/</id>
   
   <author>
@@ -17,27 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>日语学习笔记01 20210101</title>
-    <link href="https://ukmeng.github.io/2021/01/Japanese-Learning-Note-test/"/>
-    <id>https://ukmeng.github.io/2021/01/Japanese-Learning-Note-test/</id>
-    <published>2021-01-26T09:10:01.000Z</published>
-    <updated>2021-01-26T11:30:25.613Z</updated>
+    <title>创建此博客的备注</title>
+    <link href="https://ukmeng.github.io/2021/01/remarks-about-this-blog/"/>
+    <id>https://ukmeng.github.io/2021/01/remarks-about-this-blog/</id>
+    <published>2021-01-26T13:17:30.000Z</published>
+    <updated>2021-01-26T13:37:22.876Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;日语学习笔记01-20210101&quot;&gt;&lt;a href=&quot;#日语学习笔记01-20210101&quot; class=&quot;headerlink&quot; title=&quot;日语学习笔记01 20210101&quot;&gt;&lt;/a&gt;日语学习笔记01 20210101&lt;/h1&gt;&lt;h2</summary>
+    <summary type="html">&lt;h2 id=&quot;创建博客的目的&quot;&gt;&lt;a href=&quot;#创建博客的目的&quot; class=&quot;headerlink&quot; title=&quot;创建博客的目的&quot;&gt;&lt;/a&gt;创建博客的目的&lt;/h2&gt;&lt;p&gt;通过写作更好地理解知识、技能，记录学习历程，分享学习心得，供人参考。&lt;/p&gt;
+&lt;h3</summary>
         
       
     
     
     
-    <category term="Language" scheme="https://ukmeng.github.io/categories/Language/"/>
+    <category term="Technology" scheme="https://ukmeng.github.io/categories/Technology/"/>
     
     
-    <category term="Japanese" scheme="https://ukmeng.github.io/tags/Japanese/"/>
+    <category term="Blog" scheme="https://ukmeng.github.io/tags/Blog/"/>
+    
+    <category term="Hexo" scheme="https://ukmeng.github.io/tags/Hexo/"/>
+    
+    <category term="HTML" scheme="https://ukmeng.github.io/tags/HTML/"/>
+    
+    <category term="JavaScript" scheme="https://ukmeng.github.io/tags/JavaScript/"/>
     
   </entry>
   
