@@ -3,11 +3,11 @@
   <title>Hello World</title>
   
   <subtitle>工事中</subtitle>
-  <link href="https://ukmeng.github.io/blog/atom.xml" rel="self"/>
+  <link href="https://ukmeng.github.io/atom.xml" rel="self"/>
   
-  <link href="https://ukmeng.github.io/blog/"/>
+  <link href="https://ukmeng.github.io/"/>
   <updated>2021-01-26T11:30:25.613Z</updated>
-  <id>https://ukmeng.github.io/blog/</id>
+  <id>https://ukmeng.github.io/</id>
   
   <author>
     <name>UKMeng</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>日语学习笔记01 20210101</title>
-    <link href="https://ukmeng.github.io/blog/2021/01/Japanese-Learning-Note-test/"/>
-    <id>https://ukmeng.github.io/blog/2021/01/Japanese-Learning-Note-test/</id>
+    <link href="https://ukmeng.github.io/2021/01/Japanese-Learning-Note-test/"/>
+    <id>https://ukmeng.github.io/2021/01/Japanese-Learning-Note-test/</id>
     <published>2021-01-26T09:10:01.000Z</published>
     <updated>2021-01-26T11:30:25.613Z</updated>
     
@@ -34,10 +34,10 @@
     
     
     
-    <category term="Language" scheme="https://ukmeng.github.io/blog/categories/Language/"/>
+    <category term="Language" scheme="https://ukmeng.github.io/categories/Language/"/>
     
     
-    <category term="Japanese" scheme="https://ukmeng.github.io/blog/tags/Japanese/"/>
+    <category term="Japanese" scheme="https://ukmeng.github.io/tags/Japanese/"/>
     
   </entry>
   
