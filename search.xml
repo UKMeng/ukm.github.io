@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title>PAT 1003 Emergency (25 分)</title>
+      <link href="2021/03/PAT-1003-Emergency-25-%E5%88%86/"/>
+      <url>2021/03/PAT-1003-Emergency-25-%E5%88%86/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>封面出处：<a href="https://www.pixiv.net/artworks/88377350">https://www.pixiv.net/artworks/88377350</a></p></blockquote><h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><blockquote><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805523835109376">1003 Emergency (25 分)</a></p></blockquote><h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>给一个无向图，给定起点和终点，计算从起点到终点的最短路径的数量，以及这些路径中点的资源（救援队）和的最大值。</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="Dijkstra-Algotirthm"><a href="#Dijkstra-Algotirthm" class="headerlink" title="Dijkstra Algotirthm"></a>Dijkstra Algotirthm</h3><ol><li>在Dijsktra算法中对从起点到各点的距离、最短距离的路径数、最大资源数进行更新统计</li><li>如果起点到某一点的距离更新了最小值，那么需要重新记录路径数和最大资源数</li><li>如果起点到某一点的距离没有更新，则累加路径数，并比较是否由更大的资源数，如果有则更新</li></ol><h3 id="DFS-Backtracking"><a href="#DFS-Backtracking" class="headerlink" title="DFS + Backtracking"></a>DFS + Backtracking</h3><ol><li>从起点进行DFS到终点</li><li>到终点时按要求比较和更新距离、路径数和资源数</li><li>回溯重新进行遍历寻找新路径</li></ol><h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;vector&gt;using namespace std;vector&lt;int&gt; weight;// dijkstravoid dijkstra(int start, int end, vector&lt;int&gt; weight, vector&lt;vector&lt;int&gt;&gt; G, int&amp; count, int&amp; max_res){    int n = weight.size();    vector&lt;bool&gt; visit(n);    vector&lt;int&gt; dis(n, 0x3f3f3f3f);    vector&lt;int&gt; res(n);    vector&lt;int&gt; path_num(n);    dis[start] = 0;    res[start] = weight[start];    path_num[start] = 1;    for(int i = 0; i &lt; n; i++){        int MIN_DIS = 0x3f3f3f3f;        int u = -1;        for(int j = 0; j &lt; n; j++){            if(!visit[j] &amp;&amp; dis[j] &lt; MIN_DIS){                u = j;                MIN_DIS = dis[j];            }        }        if(u == -1) return;        visit[u] = true;        for(int v = 0; v &lt; n; v++){            if(!visit[v] &amp;&amp; G[u][v] != 0){                if(dis[v] &gt; dis[u] + G[u][v]){                    dis[v] = dis[u] + G[u][v];                    res[v] = weight[v] + res[u];                    path_num[v] = path_num[u];                } else if(dis[v] == dis[u] + G[u][v]){                    res[v] = max(res[v], weight[v] + res[u]);                    path_num[v] += path_num[u];                }            }        }    }    count = path_num[end];    max_res = res[end];    return;}// dfsvector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; edge;vector&lt;bool&gt; visit_dfs;int temp_res = 0;int temp_dis = 0;int min_temp_dis = 0x3f3f3f3f;void dfs(int start, int end, int&amp; count, int&amp; max_res){    if(start == end){        temp_res += weight[end];        if(temp_dis &lt; min_temp_dis){            min_temp_dis = temp_dis;            count = 1;            max_res = temp_res;        } else if(temp_dis == min_temp_dis){            count++;            max_res = max(max_res, temp_res);        }        temp_res -= weight[end];        return;    }    for(int i = 0; i &lt; edge[start].size(); i++){        int v = edge[start][i].first;        int dis = edge[start][i].second;        if(!visit_dfs[v]){            visit_dfs[start] = true;            temp_res += weight[start];            temp_dis += dis;            dfs(v, end, count, max_res);            visit_dfs[start] = false;            temp_res -= weight[start];            temp_dis -= dis;        }    }}int main(){    int n, m, start, end;    int count = 0; // 记录最短路径数量    int max_res = 0; // 记录最大救援队数量    cin &gt;&gt; n &gt;&gt; m &gt;&gt; start &gt;&gt; end;    weight.resize(n);    edge.resize(n);    visit_dfs.resize(n);    vector&lt;vector&lt;int&gt;&gt; G(n, weight);    for(int i = 0; i &lt; n; i++){        cin &gt;&gt; weight[i];    }    for(int i = 0; i &lt; m; i++){        int a, b, w;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;        G[a][b] = w;        G[b][a] = w;        edge[a].push_back({b,w});        edge[b].push_back({a,w});    }    dijkstra(start, end, weight, G, count, max_res);    cout &lt;&lt; "dijkstra " &lt;&lt; count &lt;&lt; " " &lt;&lt; max_res &lt;&lt; endl;    count = 0;    max_res = 0;    dfs(start, end, count, max_res);    cout &lt;&lt; "dfs " &lt;&lt; count &lt;&lt; " " &lt;&lt; max_res &lt;&lt; endl;    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> PAT </tag>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> DFS </tag>
+            
+            <tag> Backtracking </tag>
+            
+            <tag> Dijkstra </tag>
+            
+            <tag> Undirected Grpha </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PAT 1002 A+B for Polynomials (25 分)</title>
       <link href="2021/03/PAT-1002-A-B-for-Polynomials-25-%E5%88%86/"/>
       <url>2021/03/PAT-1002-A-B-for-Polynomials-25-%E5%88%86/</url>
@@ -26,7 +63,7 @@
             
             <tag> Algorithm </tag>
             
-            <tag> HashTable </tag>
+            <tag> Hash Table </tag>
             
         </tags>
       
