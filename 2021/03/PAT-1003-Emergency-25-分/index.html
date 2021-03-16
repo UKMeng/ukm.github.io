@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="Hello World" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Hello World" type="application/atom+xml">
 </head>
 
 
@@ -426,116 +426,116 @@
 <li>到终点时按要求比较和更新距离、路径数和资源数</li>
 <li>回溯重新进行遍历寻找新路径</li>
 </ol>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-using namespace std;
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-vector&lt;int&gt; weight;
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> weight<span class="token punctuation">;</span>
 
-// dijkstra
-void dijkstra(int start, int end, vector&lt;int&gt; weight, vector&lt;vector&lt;int&gt;&gt; G, int&amp; count, int&amp; max_res){
-    int n = weight.size();
-    vector&lt;bool&gt; visit(n);
-    vector&lt;int&gt; dis(n, 0x3f3f3f3f);
-    vector&lt;int&gt; res(n);
-    vector&lt;int&gt; path_num(n);
-    dis[start] = 0;
-    res[start] = weight[start];
-    path_num[start] = 1;
-    for(int i = 0; i &lt; n; i++){
-        int MIN_DIS = 0x3f3f3f3f;
-        int u = -1;
-        for(int j = 0; j &lt; n; j++){
-            if(!visit[j] &amp;&amp; dis[j] &lt; MIN_DIS){
-                u = j;
-                MIN_DIS = dis[j];
-            }
-        }
-        if(u == -1) return;
-        visit[u] = true;
-        for(int v = 0; v &lt; n; v++){
-            if(!visit[v] &amp;&amp; G[u][v] != 0){
-                if(dis[v] &gt; dis[u] + G[u][v]){
-                    dis[v] = dis[u] + G[u][v];
-                    res[v] = weight[v] + res[u];
-                    path_num[v] = path_num[u];
-                } else if(dis[v] == dis[u] + G[u][v]){
-                    res[v] = max(res[v], weight[v] + res[u]);
-                    path_num[v] += path_num[u];
-                }
-            }
-        }
-    }
-    count = path_num[end];
-    max_res = res[end];
-    return;
-}
+<span class="token comment">// dijkstra</span>
+<span class="token keyword">void</span> <span class="token function">dijkstra</span><span class="token punctuation">(</span><span class="token keyword">int</span> start<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> weight<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;&gt;</span> G<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&amp;</span> count<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&amp;</span> max_res<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> weight<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">bool</span><span class="token operator">&gt;</span> <span class="token function">visit</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">dis</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">res</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">path_num</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dis<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    res<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">=</span> weight<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    path_num<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> MIN_DIS <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> u <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>visit<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> dis<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> MIN_DIS<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                u <span class="token operator">=</span> j<span class="token punctuation">;</span>
+                MIN_DIS <span class="token operator">=</span> dis<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>u <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        visit<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> v <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> v <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> v<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>visit<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> G<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">&gt;</span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> G<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> G<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    res<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> weight<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">+</span> res<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                    path_num<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> path_num<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>dis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">==</span> dis<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">+</span> G<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    res<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>res<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">,</span> weight<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">+</span> res<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    path_num<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">+=</span> path_num<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    count <span class="token operator">=</span> path_num<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    max_res <span class="token operator">=</span> res<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-// dfs
-vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; edge;
-vector&lt;bool&gt; visit_dfs;
-int temp_res = 0;
-int temp_dis = 0;
-int min_temp_dis = 0x3f3f3f3f;
-void dfs(int start, int end, int&amp; count, int&amp; max_res){
-    if(start == end){
-        temp_res += weight[end];
-        if(temp_dis &lt; min_temp_dis){
-            min_temp_dis = temp_dis;
-            count = 1;
-            max_res = temp_res;
-        } else if(temp_dis == min_temp_dis){
-            count++;
-            max_res = max(max_res, temp_res);
-        }
-        temp_res -= weight[end];
-        return;
-    }
-    for(int i = 0; i &lt; edge[start].size(); i++){
-        int v = edge[start][i].first;
-        int dis = edge[start][i].second;
-        if(!visit_dfs[v]){
-            visit_dfs[start] = true;
-            temp_res += weight[start];
-            temp_dis += dis;
-            dfs(v, end, count, max_res);
-            visit_dfs[start] = false;
-            temp_res -= weight[start];
-            temp_dis -= dis;
-        }
-    }
-}
+<span class="token comment">// dfs</span>
+vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> edge<span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword">bool</span><span class="token operator">&gt;</span> visit_dfs<span class="token punctuation">;</span>
+<span class="token keyword">int</span> temp_res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> temp_dis <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> min_temp_dis <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> start<span class="token punctuation">,</span> <span class="token keyword">int</span> end<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&amp;</span> count<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&amp;</span> max_res<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>start <span class="token operator">==</span> end<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        temp_res <span class="token operator">+=</span> weight<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>temp_dis <span class="token operator">&lt;</span> min_temp_dis<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            min_temp_dis <span class="token operator">=</span> temp_dis<span class="token punctuation">;</span>
+            count <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            max_res <span class="token operator">=</span> temp_res<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>temp_dis <span class="token operator">==</span> min_temp_dis<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            count<span class="token operator">++</span><span class="token punctuation">;</span>
+            max_res <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>max_res<span class="token punctuation">,</span> temp_res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        temp_res <span class="token operator">-=</span> weight<span class="token punctuation">[</span>end<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> edge<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> v <span class="token operator">=</span> edge<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> dis <span class="token operator">=</span> edge<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>visit_dfs<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            visit_dfs<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            temp_res <span class="token operator">+=</span> weight<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            temp_dis <span class="token operator">+=</span> dis<span class="token punctuation">;</span>
+            <span class="token function">dfs</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> end<span class="token punctuation">,</span> count<span class="token punctuation">,</span> max_res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            visit_dfs<span class="token punctuation">[</span>start<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            temp_res <span class="token operator">-=</span> weight<span class="token punctuation">[</span>start<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            temp_dis <span class="token operator">-=</span> dis<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
 
-int main(){
-    int n, m, start, end;
-    int count = 0; // 记录最短路径数量
-    int max_res = 0; // 记录最大救援队数量
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; start &gt;&gt; end;
-    weight.resize(n);
-    edge.resize(n);
-    visit_dfs.resize(n);
-    vector&lt;vector&lt;int&gt;&gt; G(n, weight);
-    for(int i = 0; i &lt; n; i++){
-        cin &gt;&gt; weight[i];
-    }
-    for(int i = 0; i &lt; m; i++){
-        int a, b, w;
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;
-        G[a][b] = w;
-        G[b][a] = w;
-        edge[a].push_back({b,w});
-        edge[b].push_back({a,w});
-    }
-    dijkstra(start, end, weight, G, count, max_res);
-    cout &lt;&lt; "dijkstra " &lt;&lt; count &lt;&lt; " " &lt;&lt; max_res &lt;&lt; endl;
-    count = 0;
-    max_res = 0;
-    dfs(start, end, count, max_res);
-    cout &lt;&lt; "dfs " &lt;&lt; count &lt;&lt; " " &lt;&lt; max_res &lt;&lt; endl;
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">,</span> start<span class="token punctuation">,</span> end<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 记录最短路径数量</span>
+    <span class="token keyword">int</span> max_res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 记录最大救援队数量</span>
+    cin <span class="token operator">&gt;&gt;</span> n <span class="token operator">&gt;&gt;</span> m <span class="token operator">&gt;&gt;</span> start <span class="token operator">&gt;&gt;</span> end<span class="token punctuation">;</span>
+    weight<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    edge<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    visit_dfs<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;&gt;</span> <span class="token function">G</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> weight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cin <span class="token operator">&gt;&gt;</span> weight<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> w<span class="token punctuation">;</span>
+        cin <span class="token operator">&gt;&gt;</span> a <span class="token operator">&gt;&gt;</span> b <span class="token operator">&gt;&gt;</span> w<span class="token punctuation">;</span>
+        G<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">[</span>b<span class="token punctuation">]</span> <span class="token operator">=</span> w<span class="token punctuation">;</span>
+        G<span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">[</span>a<span class="token punctuation">]</span> <span class="token operator">=</span> w<span class="token punctuation">;</span>
+        edge<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">{</span>b<span class="token punctuation">,</span>w<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        edge<span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">{</span>a<span class="token punctuation">,</span>w<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">dijkstra</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> end<span class="token punctuation">,</span> weight<span class="token punctuation">,</span> G<span class="token punctuation">,</span> count<span class="token punctuation">,</span> max_res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"dijkstra "</span> <span class="token operator">&lt;&lt;</span> count <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> max_res <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    max_res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">dfs</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> end<span class="token punctuation">,</span> count<span class="token punctuation">,</span> max_res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"dfs "</span> <span class="token operator">&lt;&lt;</span> count <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> max_res <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
