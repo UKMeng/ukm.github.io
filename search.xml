@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>PAT 1005 Spell It Right (20 分)</title>
+      <link href="2021/03/PAT-1005-Spell-It-Right-20-%E5%88%86/"/>
+      <url>2021/03/PAT-1005-Spell-It-Right-20-%E5%88%86/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>封面出处：<a href="https://www.pixiv.net/artworks/66923057">https://www.pixiv.net/artworks/66923057</a></p></blockquote><h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><blockquote><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805519074574336">1005 Spell It Right (20 分)</a></p></blockquote><h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>将输入的一串数字各位相加，并将和的各位数字用英语输出</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol><li>用<code>string</code>接受输入，并求和sum</li><li>将和sum也转变成<code>string</code>类型 (<code>to_string()</code>)</li><li>将字符串的和按位输出对应的英文</li></ol><h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span><span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    vector<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> numWord <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"zero"</span><span class="token punctuation">,</span> <span class="token string">"one"</span><span class="token punctuation">,</span> <span class="token string">"two"</span><span class="token punctuation">,</span> <span class="token string">"three"</span><span class="token punctuation">,</span> <span class="token string">"four"</span><span class="token punctuation">,</span> <span class="token string">"five"</span><span class="token punctuation">,</span> <span class="token string">"six"</span><span class="token punctuation">,</span> <span class="token string">"seven"</span><span class="token punctuation">,</span> <span class="token string">"eight"</span><span class="token punctuation">,</span> <span class="token string">"nine"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>    string n<span class="token punctuation">;</span>    cin <span class="token operator">&gt;&gt;</span> n<span class="token punctuation">;</span>    <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>        sum <span class="token operator">+=</span> n<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    string ans <span class="token operator">=</span> <span class="token function">to_string</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ans<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>        <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> cout <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> numWord<span class="token punctuation">[</span>ans<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token keyword">else</span> cout <span class="token operator">&lt;&lt;</span> numWord<span class="token punctuation">[</span>ans<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'0'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> String </tag>
+            
+            <tag> C++ </tag>
+            
+            <tag> PAT </tag>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PAT 1004 Counting Leaves (30 分)</title>
       <link href="2021/03/PAT-1004-Counting-Leaves-30-%E5%88%86/"/>
       <url>2021/03/PAT-1004-Counting-Leaves-30-%E5%88%86/</url>
