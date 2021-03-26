@@ -6,7 +6,7 @@
   <link href="https://ukmeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://ukmeng.github.io/"/>
-  <updated>2021-03-24T06:34:43.822Z</updated>
+  <updated>2021-03-26T04:01:04.728Z</updated>
   <id>https://ukmeng.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PAT 1006 Sign In and Sign Out (25 分)</title>
+    <link href="https://ukmeng.github.io/2021/03/PAT-1006-Sign-In-and-Sign-Out-25-%E5%88%86/"/>
+    <id>https://ukmeng.github.io/2021/03/PAT-1006-Sign-In-and-Sign-Out-25-%E5%88%86/</id>
+    <published>2021-03-26T04:00:02.000Z</published>
+    <updated>2021-03-26T04:01:04.728Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;封面出处：&lt;a href=&quot;https://www.pixiv.net/artworks/66923057&quot;&gt;https://www.pixiv.net/artworks/66923057&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://ukmeng.github.io/categories/Algorithm/"/>
+    
+    
+    <category term="C++" scheme="https://ukmeng.github.io/tags/C/"/>
+    
+    <category term="PAT" scheme="https://ukmeng.github.io/tags/PAT/"/>
+    
+    <category term="Algorithm" scheme="https://ukmeng.github.io/tags/Algorithm/"/>
+    
+    <category term="Sort" scheme="https://ukmeng.github.io/tags/Sort/"/>
+    
+  </entry>
   
   <entry>
     <title>PAT 1005 Spell It Right (20 分)</title>
@@ -201,7 +235,7 @@
     <link href="https://ukmeng.github.io/2021/01/Completed-List-2021/"/>
     <id>https://ukmeng.github.io/2021/01/Completed-List-2021/</id>
     <published>2021-01-27T06:02:11.000Z</published>
-    <updated>2021-03-07T02:31:09.101Z</updated>
+    <updated>2021-03-24T06:37:34.941Z</updated>
     
     
       
