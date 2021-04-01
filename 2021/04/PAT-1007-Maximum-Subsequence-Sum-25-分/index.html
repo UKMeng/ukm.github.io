@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PAT 1002 A+B for Polynomials (25 分), Hello World">
+    <meta name="keywords" content="PAT 1007 Maximum Subsequence Sum (25 分), Hello World">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PAT 1002 A+B for Polynomials (25 分) | Hello World</title>
+    <title>PAT 1007 Maximum Subsequence Sum (25 分) | Hello World</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -206,12 +206,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/cover/4.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PAT 1002 A+B for Polynomials (25 分)</h1>
+                    <h1 class="description center-align post-title">PAT 1007 Maximum Subsequence Sum (25 分)</h1>
                 </div>
             </div>
         </div>
@@ -339,8 +339,12 @@
                                 <span class="chip bg-color">Algorithm</span>
                             </a>
                         
-                            <a href="/tags/Hash-Table/">
-                                <span class="chip bg-color">Hash Table</span>
+                            <a href="/tags/Dynamic-Programming/">
+                                <span class="chip bg-color">Dynamic Programming</span>
+                            </a>
+                        
+                            <a href="/tags/Greedy-Algorithm/">
+                                <span class="chip bg-color">Greedy Algorithm</span>
                             </a>
                         
                     </div>
@@ -364,7 +368,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-15
+                    2021-04-01
                 </div>
                 
 
@@ -373,7 +377,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    312
+                    569
                 </div>
                 
 
@@ -394,52 +398,88 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>封面出处：<a target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/88377350">https://www.pixiv.net/artworks/88377350</a></p>
+<p>封面出处：<a target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/66923057">https://www.pixiv.net/artworks/66923057</a></p>
 </blockquote>
 <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805526272000000">1002 A+B for Polynomials (25 分)</a></p>
+<p><a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets/994805342720868352/problems/994805514284679168">1007 Maximum Subsequence Sum (25 分)</a></p>
 </blockquote>
-<h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>将两个多项式相加，然后按照同样的格式输出。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol>
-<li>建立一个<code>unordered_map</code>mapp，key为项号，value为系数，建立一个<code>vector</code>ans用于存放符合要求的项号和系数，用一个<code>int</code>high来记录最高项项号</li>
-<li>接受第一组的输入，对应输入到mapp中去，更新high</li>
-<li>接受第二组的输入，累加到mapp中对应的项，更新high</li>
-<li>从high开始到0遍历，把符合要求（对应的系数不为零）的推入ans中(<code>push_back()</code>)</li>
-<li>按照格式输出，先输出ans大小，然后输出ans各项</li>
+<h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>给定一串数字，找到和最大的子串，输出和以及首尾元素</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="双重循环"><a href="#双重循环" class="headerlink" title="双重循环"></a>双重循环</h3><ol>
+<li>固定首元素，遍历往后寻找会有更大的子串和的尾元素，如果比较更大，则更新需要输出的几个变量</li>
+<li>首元素往后动一位，重复上一步</li>
 </ol>
-<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p><code>pair</code>的用法</p>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>基础的动态规划问题，需要记录的变量<code>dp</code>是前i-1个元素的最大子串和，将<code>dp+num[i]</code>与<code>num[i]</code>进行比较：</p>
+<ul>
+<li>如果dp + num[i] &lt; num[i] 则更新dp为num[i]</li>
+<li>如果dp + num[i] &gt;= num[i] 则更新dp为dp+num[i]</li>
+</ul>
+<p>更新完dp后需要检查是否是更大的子串和，如果是则还需要更新需要输出的元素</p>
+<h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><p>如果子串和为负数，则后面再继续添加元素，都不会有符合答案要求的最大和的子串了，可以从当前的子串尾后一个元素重新计算和寻找新的子串。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>要仔细审题，因为给的例子刚好子串首尾数字和序号是一样的，以为输出的序号，导致出错。因此还是要仔细审题，别自信地从测试样例获取题意。</p>
 <h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">&gt;</span> mapp<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> high <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">int</span> n<span class="token punctuation">;</span>
-        cin <span class="token operator">&gt;&gt;</span> n<span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">int</span> k<span class="token punctuation">;</span>
-            <span class="token keyword">float</span> v<span class="token punctuation">;</span>
-            cin <span class="token operator">&gt;&gt;</span> k <span class="token operator">&gt;&gt;</span> v<span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> high <span class="token operator">&lt;</span> k<span class="token punctuation">)</span> high <span class="token operator">=</span> k<span class="token punctuation">;</span>
-            mapp<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+=</span> v<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">num</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 双重循环</span>
+    <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> front <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> rear <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            sum <span class="token operator">+=</span> num<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sum <span class="token operator">&gt;</span> ans<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                ans <span class="token operator">=</span> sum<span class="token punctuation">;</span>
+                front <span class="token operator">=</span> i<span class="token punctuation">;</span>
+                rear <span class="token operator">=</span> j<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-    vector<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">float</span><span class="token operator">&gt;&gt;</span> ans<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> high<span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>mapp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            ans<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">{</span>i<span class="token punctuation">,</span> mapp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 动态规划</span>
+    <span class="token keyword">int</span> dp <span class="token operator">=</span> num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ans <span class="token operator">=</span> num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> prel <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> front <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> rear <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>dp <span class="token operator">+</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            dp <span class="token operator">=</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            prel <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> dp <span class="token operator">=</span> dp <span class="token operator">+</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>dp <span class="token operator">&gt;</span> ans<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            ans <span class="token operator">=</span> dp<span class="token punctuation">;</span>
+            front <span class="token operator">=</span> prel<span class="token punctuation">;</span>
+            rear <span class="token operator">=</span> i<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> ans<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ans<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">" %d %.1f"</span><span class="token punctuation">,</span> ans<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>first<span class="token punctuation">,</span> ans<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>second<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+
+    <span class="token comment">// 贪心</span>
+    <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> pre <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> front<span class="token punctuation">,</span> rear<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        sum <span class="token operator">+=</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>sum <span class="token operator">&gt;</span> ans<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            ans <span class="token operator">=</span> sum<span class="token punctuation">;</span>
+            front <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+            rear <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>sum <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            pre <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>ans <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> cout <span class="token operator">&lt;&lt;</span> <span class="token number">0</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> num<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> num<span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> num<span class="token punctuation">[</span>front<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> num<span class="token punctuation">[</span>rear<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -465,7 +505,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://ukmeng.github.io/2021/03/PAT-1002-A-B-for-Polynomials-25-%E5%88%86/">https://ukmeng.github.io/2021/03/PAT-1002-A-B-for-Polynomials-25-%E5%88%86/</a>
+                    <a href="https://ukmeng.github.io/2021/04/PAT-1007-Maximum-Subsequence-Sum-25-%E5%88%86/">https://ukmeng.github.io/2021/04/PAT-1007-Maximum-Subsequence-Sum-25-%E5%88%86/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -515,8 +555,12 @@
                                     <span class="chip bg-color">Algorithm</span>
                                 </a>
                             
-                                <a href="/tags/Hash-Table/">
-                                    <span class="chip bg-color">Hash Table</span>
+                                <a href="/tags/Dynamic-Programming/">
+                                    <span class="chip bg-color">Dynamic Programming</span>
+                                </a>
+                            
+                                <a href="/tags/Greedy-Algorithm/">
+                                    <span class="chip bg-color">Greedy Algorithm</span>
                                 </a>
                             
                         </div>
@@ -560,28 +604,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/03/PAT-1003-Emergency-25-%E5%88%86/">
+                <a href="/2021/04/PAT-1007-Maximum-Subsequence-Sum-25-%E5%88%86/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/3.jpg" class="responsive-img" alt="PAT 1003 Emergency (25 分)">
+                        <img src="/medias/cover/4.png" class="responsive-img" alt="PAT 1007 Maximum Subsequence Sum (25 分)">
                         
-                        <span class="card-title">PAT 1003 Emergency (25 分)</span>
+                        <span class="card-title">PAT 1007 Maximum Subsequence Sum (25 分)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1003 Emergency (25 分)
+                            1007 Maximum Subsequence Sum (25 分)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -594,6 +639,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -609,24 +655,12 @@
                         <span class="chip bg-color">Algorithm</span>
                     </a>
                     
-                    <a href="/tags/DFS/">
-                        <span class="chip bg-color">DFS</span>
+                    <a href="/tags/Dynamic-Programming/">
+                        <span class="chip bg-color">Dynamic Programming</span>
                     </a>
                     
-                    <a href="/tags/Backtracking/">
-                        <span class="chip bg-color">Backtracking</span>
-                    </a>
-                    
-                    <a href="/tags/Dijkstra/">
-                        <span class="chip bg-color">Dijkstra</span>
-                    </a>
-                    
-                    <a href="/tags/Undirected-Grpha/">
-                        <span class="chip bg-color">Undirected Grpha</span>
-                    </a>
-                    
-                    <a href="/tags/Shortest-Path/">
-                        <span class="chip bg-color">Shortest Path</span>
+                    <a href="/tags/Greedy-Algorithm/">
+                        <span class="chip bg-color">Greedy Algorithm</span>
                     </a>
                     
                 </div>
@@ -640,23 +674,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/PAT-1001-A-B-Format-20-%E5%88%86/">
+                <a href="/2021/03/PAT-1006-Sign-In-and-Sign-Out-25-%E5%88%86/">
                     <div class="card-image">
                         
-                        <img src="/medias/cover/2.jpg" class="responsive-img" alt="PAT 1001 A+B Format (20 分)">
+                        <img src="/medias/cover/4.png" class="responsive-img" alt="PAT 1006 Sign In and Sign Out (25 分)">
                         
-                        <span class="card-title">PAT 1001 A+B Format (20 分)</span>
+                        <span class="card-title">PAT 1006 Sign In and Sign Out (25 分)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1001 A+B Format (20 分)
+                            1006 Sign In and Sign Out (25 分)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-26
                             </span>
                         <span class="publish-author">
                             
@@ -673,10 +707,6 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/String/">
-                        <span class="chip bg-color">String</span>
-                    </a>
-                    
                     <a href="/tags/C/">
                         <span class="chip bg-color">C++</span>
                     </a>
@@ -687,6 +717,10 @@
                     
                     <a href="/tags/Algorithm/">
                         <span class="chip bg-color">Algorithm</span>
+                    </a>
+                    
+                    <a href="/tags/Sort/">
+                        <span class="chip bg-color">Sort</span>
                     </a>
                     
                 </div>
