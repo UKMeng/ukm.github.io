@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>PAT 1008 Elevator (20 分)</title>
+      <link href="2021/04/PAT-1008-Elevator-20-%E5%88%86/"/>
+      <url>2021/04/PAT-1008-Elevator-20-%E5%88%86/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>封面出处：<a href="https://www.pixiv.net/artworks/73717449">https://www.pixiv.net/artworks/73717449</a></p></blockquote><h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><blockquote><p><a href="https://pintia.cn/problem-sets/994805342720868352/problems/994805511923286016">1008 Elevator (20 分)</a></p></blockquote><h2 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h2><p>给定一个电梯请求序列，电梯从0层开始执行请求，每上升一层需要6秒，每下降一层需要4秒，各层停留5秒，输出执行完请求序列所需要的时间（电梯无需回到一楼）</p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>按要求模拟即可</p><h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span><span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">int</span> n<span class="token punctuation">;</span>    cin <span class="token operator">&gt;&gt;</span> n<span class="token punctuation">;</span>    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">num</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin <span class="token operator">&gt;&gt;</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> ans <span class="token operator">=</span> n <span class="token operator">*</span> <span class="token number">5</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> now <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>        <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&gt;</span> now<span class="token punctuation">)</span><span class="token punctuation">{</span>            ans <span class="token operator">+=</span> <span class="token punctuation">(</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> now<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">;</span>            now <span class="token operator">=</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>            ans <span class="token operator">+=</span> <span class="token punctuation">(</span>now <span class="token operator">-</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">;</span>            now <span class="token operator">=</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>    <span class="token punctuation">}</span>    cout <span class="token operator">&lt;&lt;</span> ans<span class="token punctuation">;</span>    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Algorithm </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C++ </tag>
+            
+            <tag> PAT </tag>
+            
+            <tag> Algorithm </tag>
+            
+            <tag> Simulation </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PAT 1007 Maximum Subsequence Sum (25 分)</title>
       <link href="2021/04/PAT-1007-Maximum-Subsequence-Sum-25-%E5%88%86/"/>
       <url>2021/04/PAT-1007-Maximum-Subsequence-Sum-25-%E5%88%86/</url>
